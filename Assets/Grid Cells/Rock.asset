@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 799c81ec64f11b44881a77ac2d0ac946, type: 3}
-  m_Name: Corner 1
+  m_Name: Rock
   m_EditorClassIdentifier: 
-  cellType: 0
-  cellPrefab: {fileID: 919132149155446097, guid: 40e265158525ab342af129e781f3b04f, type: 3}
-  yRotation: 180
+  cellType: 1
+  cellPrefab: {fileID: 919132149155446097, guid: 3db8c302c1f64c142a8e3c3cfe62596c, type: 3}
+  yRotation: 0

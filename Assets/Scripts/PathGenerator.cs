@@ -33,7 +33,7 @@ public class PathGenerator
                     x++;
                     validMove = true;
                 }
-                else if (move == 1 && CellIsEmpty(x,y + 1) && y < (height - 2))
+                else if (move == 1 && CellIsEmpty(x, y + 1) && y < (height - 2))
                 {
                     y++;
                     validMove = true;
@@ -49,12 +49,12 @@ public class PathGenerator
         return pathCells;
     }
 
-    private bool CellIsEmpty(int x, int y)
+    public bool CellIsEmpty(int x, int y)
     {
         return !pathCells.Contains(new Vector2Int(x, y));
     }
 
-    private bool CellIsTaken(int x, int y)
+    public bool CellIsTaken(int x, int y)
     {
         return pathCells.Contains(new Vector2Int(x, y));
     }

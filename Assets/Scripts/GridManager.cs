@@ -8,7 +8,8 @@ public class GridManager : MonoBehaviour
     public int gridHeight = 8;
     public int minPathLenght = 30;
 
-    public GridCellObject[] gridCells;
+    public GridCellObject[] pathCellObjects;
+    public GridCellObject[] sceneryCellObjects;
 
     private PathGenerator pathGenerator;
 
@@ -26,8 +27,14 @@ public class GridManager : MonoBehaviour
             pathSize = pathCells.Count;
         }
        
-        StartCoroutine(LayPathCells(pathCells));
+        StartCoroutine(CreateGrid(pathCells));
     }
+
+    IEnumerator CreateGrid(List<Vector2Int> pathCells)
+    {
+        yield return LayPathCells(pathCells);
+        yield return LaySceneryCells();
+    }    
 
     private IEnumerator LayPathCells(List<Vector2Int> pathCells)
     {
@@ -35,9 +42,9 @@ public class GridManager : MonoBehaviour
         {
             int neighbourValue = pathGenerator.getCellNeighbourValue(pathCell.x, pathCell.y) - 1;
             Debug.Log("Title " + pathCell.x + ", " + pathCell.y + " neighbour value = " + neighbourValue);
-            GameObject pathTile = gridCells[neighbourValue].cellPrefab;
+            GameObject pathTile = pathCellObjects[neighbourValue].cellPrefab;
             GameObject pathTileCell = Instantiate(pathTile, new Vector3(pathCell.x, 0f, pathCell.y), Quaternion.identity);
-            pathTileCell.transform.Rotate(0f, gridCells[neighbourValue].yRotation, 0f, Space.Self);
+            pathTileCell.transform.Rotate(0f, pathCellObjects[neighbourValue].yRotation, 0f, Space.Self);
 
             yield return new WaitForSeconds(0.1f);
         }
@@ -45,9 +52,21 @@ public class GridManager : MonoBehaviour
         yield return null;
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator LaySceneryCells()
     {
-        
+        for (int x = 0; x < gridWidth; x++)
+        {
+            for (int y = 0; y < gridHeight; y++)
+            {
+                if (pathGenerator.CellIsEmpty(x,y))
+                {
+                    int randomSceneryCellIndex = Random.Range(0, sceneryCellObjects.Length);
+                    Instantiate(sceneryCellObjects[randomSceneryCellIndex].cellPrefab, new Vector3(x, 0f, y), Quaternion.identity);
+                    yield return new WaitForSeconds(0.025f);
+                }
+            }
+        }
+
+        yield return null;
     }
 }
