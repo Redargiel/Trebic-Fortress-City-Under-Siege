@@ -6,5 +6,5 @@ Jan Bulant - programator, graphics, , COO of Redarg Inc., contact: bulantj.06@sp
 Radek Cermak - graphics, CFO of Redarg Inc., contact: cermakr.06@spst.eu
 
 Chybý poslední uploady hry, kde chybý generování křižovatek.
-Brzy bude opraven Wave system a přidáno menu na pokládání věží
+Brzy bude opraven Wave system a přidáno menu na pokládání věží, main menu, setting menu a další....
 Termín dodělání hry 24.11.2023
